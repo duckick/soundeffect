@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <TableLayout
+        android:weightSum="5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--            1번 table row-->
+        <TableRow
+            android:weightSum="4"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <ImageButton
+                android:id="@+id/axe"
+                android:src="@drawable/axe"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/boiling"
+                android:src="@drawable/boiling"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/broom"
+                android:src="@drawable/broom"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/fan"
+                android:src="@drawable/fan"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+
+
+        </TableRow>
+
+
+        <!--            2번 table row-->
+        <TableRow
+            android:weightSum="4"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <ImageButton
+                android:id="@+id/hey"
+                android:src="@drawable/hey"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/kakao"
+                android:src="@drawable/kakao"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/kiss"
+                android:src="@drawable/kiss"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/match"
+                android:src="@drawable/match"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+
+        </TableRow>
+
+
+        <!--            3번 table row-->
+        <TableRow
+            android:weightSum="4"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <ImageButton
+                android:id="@+id/shit"
+                android:src="@drawable/shit"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/siren"
+                android:src="@drawable/siren"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/train"
+                android:src="@drawable/train"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/typing"
+                android:src="@drawable/typing"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+
+        </TableRow>
+
+
+        <!--            4번 table row-->
+        <TableRow
+            android:weightSum="4"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <ImageButton
+                android:id="@+id/waves"
+                android:src="@drawable/waves"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/whistle"
+                android:src="@drawable/whistle"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/windows"
+                android:src="@drawable/windows"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/witch"
+                android:src="@drawable/witch"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+
+        </TableRow>
+
+
+        <!--            5번 table row-->
+        <TableRow
+            android:weightSum="4"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <ImageButton
+                android:id="@+id/wolf"
+                android:src="@drawable/wolf"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/wow"
+                android:src="@drawable/wow"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/zippo"
+                android:src="@drawable/zippo"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/zombie"
+                android:src="@drawable/zombie"
+                android:scaleType="centerInside"
+                android:padding="15sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+
+
+</LinearLayout>
