@@ -1,4 +1,4 @@
-package com.iliun.soundeffect
+package iliun.com.soundeffect
 
 import android.media.SoundPool
 import android.os.Bundle
@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import com.realpacific.clickshrinkeffect.applyClickShrink
+import iliun.com.R
 
 class Fragment6 : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val view: View = inflater.inflate(R.layout.fragment_6, container, false)
-        val soundPool = SoundPool.Builder().setMaxStreams(6).build()
+        val soundPool = SoundPool.Builder().setMaxStreams(1).build()
 
         val axe = view.findViewById<ImageButton>(R.id.axe)
         val axem =  soundPool.load(requireContext(), R.raw.axe, 1)
@@ -53,11 +55,11 @@ class Fragment6 : Fragment() {
 
         val siren = view.findViewById<ImageButton>(R.id.siren)
         val sirenm =  soundPool.load(requireContext(), R.raw.siren, 1)
-        siren.setOnClickListener{soundPool.play(sirenm, 1.0f, 1.0f, 0, 0, 1.0f)}
+        siren.setOnClickListener{soundPool.play(sirenm, 0.8f, 0.8f, 0, 0, 1.0f)}
 
         val train = view.findViewById<ImageButton>(R.id.train)
         val trainm =  soundPool.load(requireContext(), R.raw.train, 1)
-        train.setOnClickListener{soundPool.play(trainm, 1.0f, 1.0f, 0, 0, 1.0f)}
+        train.setOnClickListener{soundPool.play(trainm, 0.9f, 0.9f, 0, 0, 1.0f)}
 
         val typing = view.findViewById<ImageButton>(R.id.typing)
         val typingm =  soundPool.load(requireContext(), R.raw.typing, 1)
@@ -69,7 +71,7 @@ class Fragment6 : Fragment() {
 
         val whistle = view.findViewById<ImageButton>(R.id.whistle)
         val whistlem =  soundPool.load(requireContext(), R.raw.whistle, 1)
-        whistle.setOnClickListener{soundPool.play(whistlem, 1.0f, 1.0f, 0, 0, 1.0f)}
+        whistle.setOnClickListener{soundPool.play(whistlem, 0.9f, 0.9f, 0, 0, 1.0f)}
 
         val windows = view.findViewById<ImageButton>(R.id.windows)
         val windowsm =  soundPool.load(requireContext(), R.raw.windows, 1)
@@ -81,11 +83,11 @@ class Fragment6 : Fragment() {
 
         val wolf = view.findViewById<ImageButton>(R.id.wolf)
         val wolfm =  soundPool.load(requireContext(), R.raw.wolf, 1)
-        wolf.setOnClickListener{soundPool.play(wolfm, 1.0f, 1.0f, 0, 0, 1.0f)}
+        wolf.setOnClickListener{soundPool.play(wolfm, 0.9f, 0.9f, 0, 0, 1.0f)}
 
         val wow = view.findViewById<ImageButton>(R.id.wow)
         val wowm =  soundPool.load(requireContext(), R.raw.wow, 1)
-        wow.setOnClickListener{soundPool.play(wowm, 1.0f, 1.0f, 0, 0, 1.0f)}
+        wow.setOnClickListener{soundPool.play(wowm, 0.9f, 0.9f, 0, 0, 1.0f)}
 
         val zippo = view.findViewById<ImageButton>(R.id.zippo)
         val zippom =  soundPool.load(requireContext(), R.raw.zippo, 1)
@@ -93,7 +95,35 @@ class Fragment6 : Fragment() {
 
         val zombie = view.findViewById<ImageButton>(R.id.zombie)
         val zombiem =  soundPool.load(requireContext(), R.raw.zombie, 1)
-        zombie.setOnClickListener{soundPool.play(zombiem, 1.0f, 1.0f, 0, 0, 1.0f)}
+        zombie.setOnClickListener{soundPool.play(zombiem, 0.8f, 0.8f, 0, 0, 1.0f)}
+
+        axe.applyClickShrink()
+        boiling.applyClickShrink()
+        broom.applyClickShrink()
+        fan.applyClickShrink()
+        hey.applyClickShrink()
+        kakao.applyClickShrink()
+        kiss.applyClickShrink()
+        match.applyClickShrink()
+        shit.applyClickShrink()
+        siren.applyClickShrink()
+        train.applyClickShrink()
+        typing.applyClickShrink()
+        waves.applyClickShrink()
+        whistle.applyClickShrink()
+        windows.applyClickShrink()
+        witch.applyClickShrink()
+        wolf.applyClickShrink()
+        wow.applyClickShrink()
+        zippo.applyClickShrink()
+        zombie.applyClickShrink()
+
+
+
+
+
+
+
 
         return view
     }

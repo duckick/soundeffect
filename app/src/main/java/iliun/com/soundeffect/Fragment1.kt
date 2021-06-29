@@ -1,4 +1,4 @@
-package com.iliun.soundeffect
+package iliun.com.soundeffect
 
 import android.media.SoundPool
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import com.realpacific.clickshrinkeffect.applyClickShrink
+import iliun.com.R
 
 
 class Fragment1 : Fragment() {
@@ -17,7 +19,7 @@ class Fragment1 : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         val view: View = inflater.inflate(R.layout.fragment_1, container, false)
 
-        val soundPool = SoundPool.Builder().setMaxStreams(6).build()
+        val soundPool = SoundPool.Builder().setMaxStreams(1).build()
 
         val ambul = view.findViewById<ImageButton>(R.id.ambul)
         val answer = view.findViewById<ImageButton>(R.id.answer)
@@ -73,7 +75,7 @@ class Fragment1 : Fragment() {
         val carkeym =  soundPool.load(requireContext(), R.raw.carkey, 1)
 
 
-        ambul.setOnClickListener{soundPool.play(ambulm, 1.1f, 1.1f, 0, 0, 1.0f)}
+        ambul.setOnClickListener{soundPool.play(ambulm, 1.0f, 1.0f, 0, 0, 1.0f) }
         answer.setOnClickListener{soundPool.play(answerm, 1.0f, 1.0f, 0, 0, 1.0f)}
         appear.setOnClickListener{soundPool.play(appearm, 0.7f, 0.7f, 0, 0, 1.0f)}
         apple.setOnClickListener{soundPool.play(applem, 1.0f, 1.0f, 0, 0, 1.0f)}
@@ -86,7 +88,7 @@ class Fragment1 : Fragment() {
         billiard.setOnClickListener{soundPool.play(billiardsm, 1.0f, 1.0f, 0, 0, 1.0f)}
         bird.setOnClickListener{soundPool.play(birdm, 1.0f, 1.0f, 0, 0, 1.0f)}
         bowling.setOnClickListener{soundPool.play(bowlingm, 1.0f, 1.0f, 0, 0, 1.0f)}
-        brucelee.setOnClickListener{soundPool.play(bruceleem, 1.0f, 1.0f, 0, 0, 1.0f)}
+        brucelee.setOnClickListener{soundPool.play(bruceleem, 0.7f, 0.7f, 0, 0, 1.0f)}
 
         bubble.setOnClickListener{soundPool.play(bubblem, 1.0f, 1.0f, 0, 0, 1.0f)}
         bycicle.setOnClickListener{soundPool.play(byciclem, 1.0f, 1.0f, 0, 0, 1.0f)}
@@ -98,11 +100,28 @@ class Fragment1 : Fragment() {
         careful.setOnClickListener{soundPool.play(carefulm, 1.0f, 1.0f, 0, 0, 1.0f)}
         carkey.setOnClickListener{soundPool.play(carkeym, 1.0f, 1.0f, 0, 0, 1.0f)}
 
+        ambul.applyClickShrink()
+        answer.applyClickShrink()
+        appear.applyClickShrink()
+        appear.applyClickShrink()
+        baby.applyClickShrink()
+        balloon.applyClickShrink()
+        baseball.applyClickShrink()
+        bee.applyClickShrink()
+        billiard.applyClickShrink()
+        bird.applyClickShrink()
+        bowling.applyClickShrink()
+        brucelee.applyClickShrink()
+        bubble.applyClickShrink()
+        bycicle.applyClickShrink()
+        camera.applyClickShrink()
+        car.applyClickShrink()
+        carbreak.applyClickShrink()
+        cardirection.applyClickShrink()
+        careful.applyClickShrink()
+        carkey.applyClickShrink()
+
         return view
-
     }
-
-
-
 }
 

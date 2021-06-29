@@ -1,4 +1,4 @@
-package com.iliun.soundeffect
+package iliun.com.soundeffect
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

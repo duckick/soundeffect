@@ -1,4 +1,4 @@
-package com.iliun.soundeffect
+package iliun.com.soundeffect
 
 import android.media.SoundPool
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import com.realpacific.clickshrinkeffect.applyClickShrink
+import iliun.com.R
 
 class Fragment2 : Fragment() {
     override fun onCreateView(
@@ -17,7 +19,7 @@ class Fragment2 : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         val view: View = inflater.inflate(R.layout.fragment_2, container, false)
 
-        val soundPool = SoundPool.Builder().setMaxStreams(6).build()
+        val soundPool = SoundPool.Builder().setMaxStreams(1).build()
 
         val carracing = view.findViewById<ImageButton>(R.id.carracing)
         val carracingm =  soundPool.load(requireContext(), R.raw.carracing, 1)
@@ -29,7 +31,7 @@ class Fragment2 : Fragment() {
 
         val cat = view.findViewById<ImageButton>(R.id.cat)
         val catm =  soundPool.load(requireContext(), R.raw.cat, 1)
-        cat.setOnClickListener{soundPool.play(catm, 1.0f, 1.0f, 0, 0, 1.0f)}
+        cat.setOnClickListener{soundPool.play(catm, 0.7f, 0.7f, 0, 0, 1.0f)}
 
         val cereal = view.findViewById<ImageButton>(R.id.cereal)
         val cerealm =  soundPool.load(requireContext(), R.raw.cereal, 1)
@@ -41,7 +43,7 @@ class Fragment2 : Fragment() {
 
         val cheer = view.findViewById<ImageButton>(R.id.cheer)
         val cheerm =  soundPool.load(requireContext(), R.raw.cheer, 1)
-        cheer.setOnClickListener{soundPool.play(cheerm, 1.0f, 1.0f, 0, 0, 1.0f)}
+        cheer.setOnClickListener{soundPool.play(cheerm, 0.9f, 0.9f, 0, 0, 1.0f)}
 
         val chick = view.findViewById<ImageButton>(R.id.chick)
         val chickm =  soundPool.load(requireContext(), R.raw.chick, 1)
@@ -89,7 +91,7 @@ class Fragment2 : Fragment() {
 
         val chicken = view.findViewById<ImageButton>(R.id.chicken)
         val chickenm =  soundPool.load(requireContext(), R.raw.chicken, 1)
-        chicken.setOnClickListener{soundPool.play(chickenm, 1.0f, 1.0f, 0, 0, 1.0f)}
+        chicken.setOnClickListener{soundPool.play(chickenm, 0.8f, 0.8f, 0, 0, 1.0f)}
 
         val coin = view.findViewById<ImageButton>(R.id.coin)
         val coinm =  soundPool.load(requireContext(), R.raw.coin, 1)
@@ -98,6 +100,29 @@ class Fragment2 : Fragment() {
         val chickendoll = view.findViewById<ImageButton>(R.id.chickendoll)
         val chickendollm =  soundPool.load(requireContext(), R.raw.chickendoll, 1)
         chickendoll.setOnClickListener{soundPool.play(chickendollm, 1.0f, 1.0f, 0, 0, 1.0f)}
+
+        carracing.applyClickShrink()
+        carstart.applyClickShrink()
+        cat.applyClickShrink()
+        cereal.applyClickShrink()
+        chain.applyClickShrink()
+        cheer.applyClickShrink()
+        chick.applyClickShrink()
+        chicken.applyClickShrink()
+        chickendoll.applyClickShrink()
+        chime.applyClickShrink()
+        cider.applyClickShrink()
+        click.applyClickShrink()
+        clipper.applyClickShrink()
+        coin.applyClickShrink()
+        cola.applyClickShrink()
+        correct.applyClickShrink()
+        countdown.applyClickShrink()
+        cricket.applyClickShrink()
+        crow.applyClickShrink()
+        dart.applyClickShrink()
+
+
 
 
         return view

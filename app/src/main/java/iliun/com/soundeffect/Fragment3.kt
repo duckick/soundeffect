@@ -1,4 +1,4 @@
-package com.iliun.soundeffect
+package iliun.com.soundeffect
 import android.media.SoundPool
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import com.realpacific.clickshrinkeffect.applyClickShrink
+import iliun.com.R
 
 class Fragment3 : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -13,7 +15,7 @@ class Fragment3 : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         val view: View = inflater.inflate(R.layout.fragment_3, container, false)
 
-        val soundPool = SoundPool.Builder().setMaxStreams(6).build()
+        val soundPool = SoundPool.Builder().setMaxStreams(1).build()
 
         val diving = view.findViewById<ImageButton>(R.id.diving)
         val divingm =  soundPool.load(requireContext(), R.raw.diving, 1)
@@ -29,7 +31,7 @@ class Fragment3 : Fragment() {
 
         val drill = view.findViewById<ImageButton>(R.id.drill)
         val drillm =  soundPool.load(requireContext(), R.raw.drill, 1)
-        drill.setOnClickListener{soundPool.play(drillm, 0.8f, 0.8f, 0, 0, 1.0f)}
+        drill.setOnClickListener{soundPool.play(drillm, 0.7f, 0.7f, 0, 0, 1.0f)}
 
         val drum = view.findViewById<ImageButton>(R.id.drum)
         val drumm =  soundPool.load(requireContext(), R.raw.drum, 1)
@@ -41,7 +43,7 @@ class Fragment3 : Fragment() {
 
         val duck = view.findViewById<ImageButton>(R.id.duck)
         val duckm =  soundPool.load(requireContext(), R.raw.duck, 1)
-        duck.setOnClickListener{soundPool.play(duckm, 1.0f, 1.0f, 0, 0, 1.0f)}
+        duck.setOnClickListener{soundPool.play(duckm, 0.9f, 0.9f, 0, 0, 1.0f)}
 
         val eggfried = view.findViewById<ImageButton>(R.id.eggfried)
         val eggfriedm=  soundPool.load(requireContext(), R.raw.eggfried, 1)
@@ -65,7 +67,7 @@ class Fragment3 : Fragment() {
 
         val fanfare = view.findViewById<ImageButton>(R.id.fanfare)
         val fanfarem =  soundPool.load(requireContext(), R.raw.fanfare, 1)
-        fanfare.setOnClickListener{soundPool.play(fanfarem, 0.9f, 0.9f, 0, 0, 1.0f)}
+        fanfare.setOnClickListener{soundPool.play(fanfarem, 0.8f, 0.8f, 0, 0, 1.0f)}
 
         val fart = view.findViewById<ImageButton>(R.id.fart)
         val fartm =  soundPool.load(requireContext(), R.raw.fart, 1)
@@ -93,7 +95,32 @@ class Fragment3 : Fragment() {
 
         val go = view.findViewById<ImageButton>(R.id.go)
         val gom =  soundPool.load(requireContext(), R.raw.go, 1)
-        go.setOnClickListener{soundPool.play(gom, 1.0f, 1.0f, 0, 0, 1.0f)}
+        go.setOnClickListener{soundPool.play(gom, 0.9f, 0.9f, 0, 0, 1.0f)}
+
+        diving.applyClickShrink()
+        dog.applyClickShrink()
+        doorbell.applyClickShrink()
+        drill.applyClickShrink()
+        drum.applyClickShrink()
+        drumset.applyClickShrink()
+        duck.applyClickShrink()
+        eggfried.applyClickShrink()
+        elephant.applyClickShrink()
+        evil.applyClickShrink()
+        explosion.applyClickShrink()
+        fallingman.applyClickShrink()
+        fanfare.applyClickShrink()
+        fart.applyClickShrink()
+        fireworks.applyClickShrink()
+        fryingpan.applyClickShrink()
+        galaga.applyClickShrink()
+        ghost.applyClickShrink()
+        glass.applyClickShrink()
+        go.applyClickShrink()
+
+
+
+
 
 
 
