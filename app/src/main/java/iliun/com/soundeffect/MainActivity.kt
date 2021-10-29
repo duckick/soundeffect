@@ -2,14 +2,19 @@ package iliun.com
 
 
 import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.DisplayMetrics
 import android.view.KeyEvent
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.formats.UnifiedNativeAd
 import com.google.android.gms.ads.nativead.NativeAd
@@ -18,6 +23,7 @@ import iliun.com.databinding.ActivityMainBinding
 import iliun.com.soundeffect.Fragment1
 import iliun.com.soundeffect.ViewPagerAdapter
 import java.lang.reflect.Array.get
+import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,9 +31,18 @@ class MainActivity : AppCompatActivity() {
     lateinit var mAdView : AdView
 
     private lateinit var binding: ActivityMainBinding
+    private val PERMISSIONS_REQUEST_CODE = 100
+    private var REQUIRED_PERMISSIONS = arrayOf<String>( android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
+
+
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -51,7 +66,12 @@ class MainActivity : AppCompatActivity() {
         ActivityCompat.finishAffinity(this)
     }
 
+
+
+
+
  }
+
 
 //    public override fun onPause() {
 //        mAdView.pause()

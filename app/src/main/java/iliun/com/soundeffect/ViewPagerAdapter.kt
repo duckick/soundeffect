@@ -15,6 +15,10 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapte
         return NUM_PAGES
     }
 
+
+
+
+
     override fun createFragment(position: Int): Fragment {
         if (position == 0) {
             return Fragment1()

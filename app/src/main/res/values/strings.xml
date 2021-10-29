@@ -2,4 +2,6 @@
     <string name="app_name">soundeffect</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="korean_fail"> 해당 버전에서 불가능합니다</string>
+    <string name="korean_success">다운로드 완료: 내장메모리/Music</string>
 </resources>

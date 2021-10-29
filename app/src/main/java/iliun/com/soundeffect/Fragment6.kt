@@ -1,22 +1,26 @@
 package iliun.com.soundeffect
 
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.media.SoundPool
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.realpacific.clickshrinkeffect.applyClickShrink
 import iliun.com.R
+import java.io.FileOutputStream
 
 class Fragment6 : Fragment() {
     lateinit var mAdView : AdView
@@ -43,18 +47,28 @@ class Fragment6 : Fragment() {
         axe.setOnClickListener{soundPool.play(axem, 1.0f, 1.0f, 0, 0, 1.0f)}
         axe.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(axem, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound();emptysound(); mhandler.postDelayed({soundPool.play(axem, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "axe.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.axe) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success, Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail, Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -64,18 +78,28 @@ class Fragment6 : Fragment() {
         boiling.setOnClickListener{soundPool.play(boilingm, 1.0f, 1.0f, 0, 0, 1.0f)}
         boiling.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(boilingm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound();emptysound(); mhandler.postDelayed({soundPool.play(boilingm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "boiling.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.boiling) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -85,18 +109,28 @@ class Fragment6 : Fragment() {
         broom.setOnClickListener{soundPool.play(broomm, 1.0f, 1.0f, 0, 0, 1.0f)}
         broom.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(broomm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound();emptysound(); mhandler.postDelayed({soundPool.play(broomm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "broom.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.broom) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -106,18 +140,28 @@ class Fragment6 : Fragment() {
         fan.setOnClickListener{soundPool.play(fanm, 1.0f, 1.0f, 0, 0, 1.0f)}
         fan.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(fanm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(fanm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "fan.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.fan) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -127,18 +171,28 @@ class Fragment6 : Fragment() {
         hey.setOnClickListener{soundPool.play(heym, 1.0f, 1.0f, 0, 0, 1.0f)}
         hey.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(heym, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(heym, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound();}
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "hey.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.hey) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -148,18 +202,28 @@ class Fragment6 : Fragment() {
         kakao.setOnClickListener{soundPool.play(kakaom, 1.0f, 1.0f, 0, 0, 1.0f)}
         kakao.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(kakaom, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(kakaom, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "kakao.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.kakao) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -169,18 +233,28 @@ class Fragment6 : Fragment() {
         kiss.setOnClickListener{soundPool.play(kissm, 1.0f, 1.0f, 0, 0, 1.0f)}
         kiss.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(kissm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(kissm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound();}
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "kiss.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.kiss) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -190,18 +264,28 @@ class Fragment6 : Fragment() {
         match.setOnClickListener{soundPool.play(matchm, 1.0f, 1.0f, 0, 0, 1.0f)}
         match.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(matchm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(matchm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "match.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.matche) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -211,18 +295,28 @@ class Fragment6 : Fragment() {
         shit.setOnClickListener{soundPool.play(shitm, 1.0f, 1.0f, 0, 0, 1.0f)}
         shit.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(shitm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(shitm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound();}
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "shit.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.shit) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -232,18 +326,28 @@ class Fragment6 : Fragment() {
         siren.setOnClickListener{soundPool.play(sirenm, 0.8f, 0.8f, 0, 0, 1.0f)}
         siren.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(sirenm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(sirenm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound();  }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "siren.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.siren) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -253,18 +357,28 @@ class Fragment6 : Fragment() {
         train.setOnClickListener{soundPool.play(trainm, 0.9f, 0.9f, 0, 0, 1.0f)}
         train.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(trainm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(trainm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound();  }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "train.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.train) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -274,18 +388,28 @@ class Fragment6 : Fragment() {
         typing.setOnClickListener{soundPool.play(typingm, 1.0f, 1.0f, 0, 0, 1.0f)}
         typing.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(typingm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(typingm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "typing.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.typing) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -295,18 +419,28 @@ class Fragment6 : Fragment() {
         waves.setOnClickListener{soundPool.play(wavesm, 1.0f, 1.0f, 0, 0, 1.0f)}
         waves.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(wavesm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(wavesm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound();  }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "waves.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.waves) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -316,18 +450,28 @@ class Fragment6 : Fragment() {
         whistle.setOnClickListener{soundPool.play(whistlem, 0.9f, 0.9f, 0, 0, 1.0f)}
         whistle.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(whistlem, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(whistlem, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "whistle.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.whistle) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -337,18 +481,28 @@ class Fragment6 : Fragment() {
         windows.setOnClickListener{soundPool.play(windowsm, 1.0f, 1.0f, 0, 0, 1.0f)}
         windows.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(windowsm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(windowsm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "windows.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.windows) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -358,18 +512,29 @@ class Fragment6 : Fragment() {
         witch.setOnClickListener{soundPool.play(witchm, 1.0f, 1.0f, 0, 0, 1.0f)}
         witch.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(witchm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(witchm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "witch.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.witch) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
+
             true
         }
 
@@ -379,18 +544,28 @@ class Fragment6 : Fragment() {
         wolf.setOnClickListener{soundPool.play(wolfm, 0.9f, 0.9f, 0, 0, 1.0f)}
         wolf.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(wolfm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(wolfm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "wolf.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.wolf) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -400,18 +575,28 @@ class Fragment6 : Fragment() {
         wow.setOnClickListener{soundPool.play(wowm, 0.9f, 0.9f, 0, 0, 1.0f)}
         wow.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(wowm, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(wowm, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound(); }
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "wow.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.wow) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -421,18 +606,28 @@ class Fragment6 : Fragment() {
         zippo.setOnClickListener{soundPool.play(zippom, 1.0f, 1.0f, 0, 0, 1.0f)}
         zippo.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(zippom, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(zippom, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound();}
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "zippo.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.zippo) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
@@ -442,18 +637,28 @@ class Fragment6 : Fragment() {
         zombie.setOnClickListener{soundPool.play(zombiem, 0.8f, 0.8f, 0, 0, 1.0f)}
         zombie.setOnLongClickListener {
             val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.fragment_custom_dialog, null)
-            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("").setCancelable(false)
-            val add: AlertDialog =  mBuilder.create()
-            add.show(); it.startAnimation(aniLongclick);
-            mAdView = mDialogView.findViewById(R.id.dialog_adView)
-            
-            mAdView.loadAd(adRequest)
-            mDialogView.findViewById<Button>(R.id.btn_loop).setOnClickListener {
-                soundPool.play(zombiem, 1.0f, 1.0f, 0, -1, 1.0f); it.startAnimation(aniLoop) }
-            mDialogView.findViewById<Button>(R.id.btn_5).setOnClickListener {
-                emptysound(); mhandler.postDelayed({soundPool.play(zombiem, 1.0f, 1.0f, 0, 0, 1.0f) },5000) ;it.startAnimation(aniBtn5) }
-            mDialogView.findViewById<Button>(R.id.btn_stop).setOnClickListener { soundPool.play(emptym, 1.0f, 1.0f, 0, 0, 1.0f); add.dismiss()
-                mhandler.removeCallbacksAndMessages(null);aniLoop.cancel();  emptysound()}
+            val mBuilder = AlertDialog.Builder(requireContext()).setView(mDialogView).setTitle("")
+            val add: AlertDialog = mBuilder.create(); add.show();
+            mDialogView.findViewById<Button>(R.id.btn_noti).setOnClickListener {
+
+                try {
+                    val contentResolver = requireContext().contentResolver
+                    val audioCollection = MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    val songDetails = ContentValues().apply { put(MediaStore.Audio.Media.DISPLAY_NAME, "zombie.mp3") }
+                    val songContentUri = contentResolver.insert(audioCollection, songDetails)!!
+                    contentResolver.openFileDescriptor(songContentUri, "w", null)?.use { pfd ->
+                        val inputStream = resources.openRawResource(R.raw.zombie) ; val outputStream = FileOutputStream(pfd.fileDescriptor)
+                        while (true) { val data = inputStream.read()
+                            if (data == -1) { break }
+                            outputStream.write(data)
+                        }
+                        inputStream.close(); outputStream.close()
+                        Toast.makeText(requireContext(),R.string.korean_success,Toast.LENGTH_LONG).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(requireContext(),R.string.korean_fail,Toast.LENGTH_SHORT).show()
+                }
+            }
             true
         }
 
