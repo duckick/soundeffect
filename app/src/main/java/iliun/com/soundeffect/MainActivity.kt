@@ -1,116 +1,192 @@
-package iliun.com
+package iliun.com.soundeffect
 
 
-import android.content.Context
-import android.content.pm.PackageManager
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.util.DisplayMetrics
-import android.view.KeyEvent
-import android.widget.FrameLayout
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.google.android.gms.ads.*
-import com.google.android.gms.ads.formats.UnifiedNativeAd
-import com.google.android.gms.ads.nativead.NativeAd
-import com.google.android.gms.ads.nativead.NativeAdOptions
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import iliun.com.databinding.ActivityMainBinding
-import iliun.com.soundeffect.Fragment1
-import iliun.com.soundeffect.ViewPagerAdapter
-import java.lang.reflect.Array.get
-import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
+//    lateinit var mAdView: AdView
 
-    lateinit var mAdView : AdView
-
+    private var mInterstitialAd: InterstitialAd? = null
     private lateinit var binding: ActivityMainBinding
-    private val PERMISSIONS_REQUEST_CODE = 100
-    private var REQUIRED_PERMISSIONS = arrayOf<String>( android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(1500L)
+        installSplashScreen()
+
         super.onCreate(savedInstanceState)
-
-
-
-
-
-
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.viewPager2.adapter = ViewPagerAdapter(this)
-//        binding.viewPager2.setCurrentItem(Int.MAX_VALUE/6,false) 무한스크롤. 일단보류
-
-        MobileAds.initialize(this) {}
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
 
 
-        val dotsIndicator = binding.dotsIndicator
-        val viewPager = binding.viewPager2
-        val adapter = ViewPagerAdapter(this)
-        viewPager.adapter = adapter
-        dotsIndicator.setViewPager2(viewPager)
+
+        MobileAds.initialize(this)
+        MobileAds.setAppMuted(true)
+        var adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(this,"ca-app-pub-9826145572344148/5621190900", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                mInterstitialAd = interstitialAd
+            }
+        })
+
+
+
+        binding.btnAnimal.setOnClickListener {
+
+            intent = Intent(this,AnimalActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnTool.setOnClickListener {
+            intent = Intent(this,ToolActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnHoror.setOnClickListener {
+            intent = Intent(this,HororActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnSf.setOnClickListener {
+            intent = Intent(this,SfActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+
+
+        binding.btnTranspor.setOnClickListener {
+            intent = Intent(this,TransporActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnWeapon.setOnClickListener {
+            intent = Intent(this,WeaponActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnRhythm.setOnClickListener {
+            intent = Intent(this,RhythmActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnBell.setOnClickListener {
+            intent = Intent(this,BellActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnKitchen.setOnClickListener {
+            intent = Intent(this,KitchenActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnHuman.setOnClickListener {
+            intent = Intent(this,HumanActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnOffice.setOnClickListener {
+            intent = Intent(this,OfficeActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnBird.setOnClickListener {
+            intent = Intent(this,BirdActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnInstrument.setOnClickListener {
+            intent = Intent(this,InstrumentActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnComic.setOnClickListener {
+            intent = Intent(this,ComicActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+
+
+
+        binding.btnNature.setOnClickListener {
+            intent = Intent(this,NatureActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+        binding.btnJoke.setOnClickListener {
+            intent = Intent(this,EtcActivity::class.java)
+            startActivity(intent)
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this)
+            }
+        }
+
+
+
+
+
     }
 
     override fun onBackPressed() {
-        ActivityCompat.finishAffinity(this)
+        finish()
     }
+}
 
-
-
-
-
- }
-
-
-//    public override fun onPause() {
-//        mAdView.pause()
-//        super.onPause()
-//    }
-//
-//    public override fun onResume() {
-//        super.onResume()
-//        mAdView.resume()
-//    }
-//
-//    public override fun onDestroy() {
-//        mAdView.destroy()
-//        super.onDestroy()
-//    }
-
-
-
-
-//    fun countdown() {
-//        val countDownTimer:CountDownTimer = object : CountDownTimer(5000,0) {
-//            override fun onTick(millisUntilFinished: Long) {
-//                Toast.makeText(this,"${millisUntilFinished}초 뒤 실행됩니다",Toast.LENGTH_SHORT).show()
-//            }
-//            override fun onFinish() {
-//            }
-//        }
-//    }
-//
-
-    //      2번 눌러 종료. 일단보류
-//    private var backPressedTime : Long = 0
-//    override fun onBackPressed() {
-//        //
-//        if (System.currentTimeMillis() - backPressedTime < 2000) {
-//            finish()
-//            return
-//        }
-//        //
-//        Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
-//        backPressedTime = System.currentTimeMillis()
-//    }

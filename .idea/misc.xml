@@ -3,11 +3,43 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/drawable/ic_baseline_volume_down_24.xml" value="0.1" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/drawable/ic_launcher_background.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/drawable/ic_repeat.xml" value="0.24722222222222223" />
-        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_main.xml" value="0.24974358974358973" />
-        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/fragment_1.xml" value="0.19074074074074074" />
-        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/fragment_custom_dialog.xml" value="0.536" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/drawable/ic_splash.xml" value="0.1" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_animal.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_beep.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_bell.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_bird.xml" value="0.19343065693430658" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_comic.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_etc.xml" value="0.1" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_horor.xml" value="0.264" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_human.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_instrument.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_kitchen.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_nature.xml" value="0.2" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_notice.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_office.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_random.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_rhythm.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_rhythm_acitivy.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_sf.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_signal.xml" value="0.2" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_starter.xml" value="0.2390625" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_tool.xml" value="0.264" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_transpor.xml" value="0.264" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_warning.xml" value="0.176" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/activity_weapon.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/fragment_1.xml" value="0.264" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/fragment_2.xml" value="0.20462962962962963" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/fragment_3.xml" value="0.20092592592592592" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/fragment_4.xml" value="0.19722222222222222" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/fragment_animal.xml" value="0.264" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/fragment_custom_dialog.xml" value="0.264" />
         <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/layout/fragment_dialog.xml" value="0.2390625" />
+        <entry key="..\:/Users/thekd/AndroidStudioProjects/soundeffect/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.16354166666666667" />
       </map>
     </option>
   </component>

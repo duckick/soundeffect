@@ -14,4 +14,15 @@
         <!-- Customize your theme here. -->
 
     </style>
+
+
+    <style name="Theme.Soundeffect.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.Soundeffect</item>
+
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
+<!--        <item name="android:windowLightStatusBar">true</item>-->
+    </style>
 </resources>
